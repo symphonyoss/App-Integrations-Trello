@@ -10,7 +10,7 @@ import org.apache.commons.io.FileUtils;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.mockito.Mock;
-import org.symphonyoss.integration.core.service.UserService;
+import org.symphonyoss.integration.service.UserService;
 import org.symphonyoss.integration.entity.model.User;
 import org.symphonyoss.integration.json.JsonUtils;
 import org.symphonyoss.integration.webhook.trello.model.TrelloMember;

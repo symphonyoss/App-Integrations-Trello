@@ -15,9 +15,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
-import org.symphonyoss.integration.authentication.AuthenticationProxy;
 import org.symphonyoss.integration.entity.model.User;
 import org.symphonyoss.integration.webhook.exception.WebHookParseException;
 
@@ -29,9 +27,6 @@ import java.io.IOException;
  */
 @RunWith(MockitoJUnitRunner.class)
 public class BoardUpdatedTrelloParserTest extends CommonTrelloTest {
-
-  @Mock
-  private AuthenticationProxy authenticationProxy;
 
   @InjectMocks
   private BoardUpdatedTrelloParser parser = new BoardUpdatedTrelloParser();

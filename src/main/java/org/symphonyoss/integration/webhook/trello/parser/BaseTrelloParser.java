@@ -25,10 +25,8 @@ import com.symphony.logging.ISymphonyLogger;
 import com.fasterxml.jackson.databind.JsonNode;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.symphonyoss.integration.authentication.AuthenticationProxy;
-import org.symphonyoss.integration.authentication.PodApiClientDecorator;
-import org.symphonyoss.integration.config.WebHookConfigurationUtils;
-import org.symphonyoss.integration.core.service.UserService;
+import org.symphonyoss.integration.utils.WebHookConfigurationUtils;
+import org.symphonyoss.integration.service.UserService;
 import org.symphonyoss.integration.entity.Entity;
 import org.symphonyoss.integration.entity.EntityBuilder;
 import org.symphonyoss.integration.entity.model.User;
@@ -54,12 +52,6 @@ public abstract class BaseTrelloParser implements TrelloParser {
 
   private static final ISymphonyLogger LOG =
       IntegrationBridgeCloudLoggerFactory.getLogger(BaseTrelloParser.class);
-
-  @Autowired
-  private AuthenticationProxy authenticationProxy;
-
-  @Autowired
-  private PodApiClientDecorator podApiClient;
 
   private String trelloUser;
 

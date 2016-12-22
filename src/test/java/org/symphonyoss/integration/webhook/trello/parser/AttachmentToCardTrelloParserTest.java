@@ -14,9 +14,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
-import org.symphonyoss.integration.authentication.AuthenticationProxy;
 import org.symphonyoss.integration.entity.model.User;
 
 import java.io.IOException;
@@ -27,9 +25,6 @@ import java.io.IOException;
  */
 @RunWith(MockitoJUnitRunner.class)
 public class AttachmentToCardTrelloParserTest extends CommonTrelloTest {
-
-  @Mock
-  private AuthenticationProxy authenticationProxy;
 
   @InjectMocks
   private AttachmentToCardTrelloParser parser = new AttachmentToCardTrelloParser();
