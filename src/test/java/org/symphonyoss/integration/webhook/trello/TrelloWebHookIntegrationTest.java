@@ -16,7 +16,6 @@
 
 package org.symphonyoss.integration.webhook.trello;
 
-import static java.util.Collections.EMPTY_MAP;
 import static org.junit.Assert.assertNull;
 
 import com.symphony.api.pod.model.ConfigurationInstance;
@@ -52,6 +51,7 @@ import org.symphonyoss.integration.webhook.trello.parser.TrelloParserException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -105,14 +105,14 @@ public class TrelloWebHookIntegrationTest {
             + "\"57cf13d078a501d4f42ea69a\",\"type\": \"unknownEvent\",\"date\": "
             + "\"2016-09-06T19:51:36.132Z\"}}";
 
-    WebHookPayload payload = new WebHookPayload(EMPTY_MAP, EMPTY_MAP, body);
+    WebHookPayload payload = new WebHookPayload(Collections.<String, String>emptyMap(), Collections.<String, String>emptyMap(), body);
     assertNull(trelloWebHookIntegration.parse(instance, payload));
   }
 
   @Test
   public void testNoEventPayload() throws WebHookParseException {
     String body = "{ \"random\": \"json\" }";
-    WebHookPayload payload = new WebHookPayload(EMPTY_MAP, EMPTY_MAP, body);
+    WebHookPayload payload = new WebHookPayload(Collections.<String, String>emptyMap(), Collections.<String, String>emptyMap(), body);
     assertNull(trelloWebHookIntegration.parse(instance, payload));
   }
 
@@ -120,7 +120,7 @@ public class TrelloWebHookIntegrationTest {
   public void testFailReadingJSON() throws IOException, WebHookParseException {
     String body = "";
 
-    WebHookPayload payload = new WebHookPayload(EMPTY_MAP, EMPTY_MAP, body);
+    WebHookPayload payload = new WebHookPayload(Collections.<String, String>emptyMap(), Collections.<String, String>emptyMap(), body);
     trelloWebHookIntegration.parse(instance, payload);
   }
 
@@ -131,7 +131,7 @@ public class TrelloWebHookIntegrationTest {
             + "\"57cf13d078a501d4f42ea69a\",\"type\": \"" + TEST_EVENT + "\",\"date\": "
             + "\"2016-09-06T19:51:36.132Z\"}}";
 
-    WebHookPayload payload = new WebHookPayload(EMPTY_MAP, EMPTY_MAP, body);
+    WebHookPayload payload = new WebHookPayload(Collections.<String, String>emptyMap(), Collections.<String, String>emptyMap(), body);
     assertNull(trelloWebHookIntegration.parse(instance, payload));
   }
 
