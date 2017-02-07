@@ -10,7 +10,10 @@ As a Symphony user you can configure a WebHook with Trello directly from the Tre
 Every integration will get a message sent in a specific format (depending on what system is it dealing with) and it will usually convert it into an "entity" before it reaches the Symphony platform.
 It will also, usually, identify the kind of message it will deal with based on an "event" identifier, that varies based on which system is it integrating with.
 
-Currently we support up to eighteen events from Trello grouped in four main categories, which we'll go into details bellow:
+There's currently eighteen events from Trello that we support, but those, for convenience, are being mapped to twenty internal events to better represent user interactions with Trello. 
+
+Those events are grouped inside four main categories: Boards, Cards, Lists and Checklists.
+On each of those we'll detail which events maps to our internal events, the payload that Trello sends to us, what we convert those into and what the message looks like when posted on the Symphony platform.
 
 ### Boards
 ###### "updateBoard"
@@ -591,70 +594,264 @@ Message rendered on Symphony
 ![Sample "createCheckItem" rendered](src/docs/sample/sample_checklist_item_created_rendered.png)
 
 ###### "updateCheckItem"
-[JSON payload](src/test/resources/)
+* Event maps to "checklistItemUpdated"
+
+[JSON payload](src/test/resources/payload_trello_checkitem_update.json)
 
 Converted to Symphony Message ML
 ```xml
 <messageML>
-    
+    <entity type="com.symphony.integration.trello.event.updateCheckItem" version="1.0">
+        <presentationML>
+            Evandro Carrenho updated Comments entity builder on Need to add the ability to see comments (<a href="https://trello.com/b/t0hu7Ffx"/>)
+        </presentationML>
+        <attribute name="date" type="org.symphonyoss.time.rfc3339" value="2016-09-13T16:17:12.517Z"/>
+        <entity name="memberCreator" type="com.symphony.integration.trello.user" version="1.0">
+            <attribute name="username" type="org.symphonyoss.string" value="ecarrenhosymphonytest"/>
+            <attribute name="displayName" type="org.symphonyoss.string" value="Evandro Carrenho"/>
+        </entity>
+        <entity type="com.symphony.integration.trello.data" version="1.0">
+            <entity type="com.symphony.integration.trello.board" version="1.0">
+                <attribute name="shortUrl" type="com.symphony.uri" value="https://trello.com/b/t0hu7Ffx"/>
+                <attribute name="name" type="org.symphonyoss.string" value="Symphony Innovate"/>
+                <attribute name="id" type="org.symphonyoss.string" value="57a34b33b350eb2bcc1f42ca"/>
+                <entity type="com.symphony.integration.trello.prefs" version="1.0">
+                    <attribute name="background" type="org.symphonyoss.string" value="blue"/>
+                    <attribute name="backgroundColor" type="org.symphonyoss.string" value="#0079BF"/>
+                </entity>
+            </entity>
+            <entity type="com.symphony.integration.trello.card" version="1.0">
+                <attribute name="shortLink" type="org.symphonyoss.string" value="woQM9Qqo"/>
+                <attribute name="name" type="org.symphonyoss.string" value="Need to add the ability to see comments"/>
+                <attribute name="id" type="org.symphonyoss.string" value="57d6ecdfcdddf493280e0d1b"/>
+                <attribute name="idShort" type="org.symphony.oss.number.int" value="11"/>
+            </entity>
+            <entity type="com.symphony.integration.trello.checklist" version="1.0">
+                <attribute name="name" type="org.symphonyoss.string" value="Subtasks for comments viewing"/>
+                <attribute name="id" type="org.symphonyoss.string" value="57d7f618834f6a46c2badc0a"/>
+            </entity>
+            <entity type="com.symphony.integration.trello.checkItem" version="1.0">
+                <attribute name="state" type="org.symphonyoss.string" value="incomplete"/>
+                <attribute name="name" type="org.symphonyoss.string" value="Comments entity builder"/>
+                <attribute name="id" type="org.symphonyoss.string" value="57d814cd8e8910365e9ff2cc"/>
+            </entity>
+            <entity type="com.symphony.integration.trello.changelog" version="1.0">
+                <entity type="com.symphony.integration.trello.change" version="1.0">
+                    <attribute name="fieldName" type="org.symphonyoss.string" value="name"/>
+                    <attribute name="oldValue" type="org.symphonyoss.string" value="Comments entity"/>
+                    <attribute name="newValue" type="org.symphonyoss.string" value="Comments entity builder"/>
+                </entity>
+            </entity>
+        </entity>
+    </entity>
 </messageML>
 ```
 Message rendered on Symphony
 
-![Sample "updateCheckItem" rendered](src/docs/sample/)
+![Sample "updateCheckItem" rendered](src/docs/sample/sample_checklist_item_updated_rendered.png)
 
 ###### "updateCheckItemStateOnCard"
-[JSON payload](src/test/resources/)
+* Event maps to "checklistItemUpdated"
 
-Converted to Symphony Message ML
+[JSON payload for variation: Complete](src/test/resources/payload_trello_checkitem_state_complete.json)
+[JSON payload for variation: Incomplete](src/test/resources/payload_trello_checkitem_state_incomplete.json)
+
+Converted to Symphony Message ML (complete only)
 ```xml
 <messageML>
-    
+    <entity type="com.symphony.integration.trello.event.updateCheckItemStateOnCard" version="1.0">
+        <presentationML>
+            Evandro Carrenho completed Comments renderer on Need to add the ability to see comments (<a href="https://trello.com/b/t0hu7Ffx"/>)
+        </presentationML>
+        <attribute name="date" type="org.symphonyoss.time.rfc3339" value="2016-09-13T15:54:46.466Z"/>
+        <entity name="memberCreator" type="com.symphony.integration.trello.user" version="1.0">
+            <attribute name="username" type="org.symphonyoss.string" value="ecarrenhosymphonytest"/>
+            <attribute name="displayName" type="org.symphonyoss.string" value="Evandro Carrenho"/>
+        </entity>
+        <entity type="com.symphony.integration.trello.data" version="1.0">
+            <entity type="com.symphony.integration.trello.board" version="1.0">
+                <attribute name="shortUrl" type="com.symphony.uri" value="https://trello.com/b/t0hu7Ffx"/>
+                <attribute name="name" type="org.symphonyoss.string" value="Symphony Innovate"/>
+                <attribute name="id" type="org.symphonyoss.string" value="57a34b33b350eb2bcc1f42ca"/>
+                <entity type="com.symphony.integration.trello.prefs" version="1.0">
+                    <attribute name="background" type="org.symphonyoss.string" value="blue"/>
+                    <attribute name="backgroundColor" type="org.symphonyoss.string" value="#0079BF"/>
+                </entity>
+            </entity>
+            <entity type="com.symphony.integration.trello.card" version="1.0">
+                <attribute name="shortLink" type="org.symphonyoss.string" value="woQM9Qqo"/>
+                <attribute name="name" type="org.symphonyoss.string" value="Need to add the ability to see comments"/>
+                <attribute name="id" type="org.symphonyoss.string" value="57d6ecdfcdddf493280e0d1b"/>
+                <attribute name="idShort" type="org.symphony.oss.number.int" value="11"/>
+            </entity>
+            <entity type="com.symphony.integration.trello.checklist" version="1.0">
+                <attribute name="name" type="org.symphonyoss.string" value="Subtasks for comments viewing"/>
+                <attribute name="id" type="org.symphonyoss.string" value="57d7f618834f6a46c2badc0a"/>
+            </entity>
+            <entity type="com.symphony.integration.trello.checkItem" version="1.0">
+                <attribute name="state" type="org.symphonyoss.string" value="complete"/>
+                <attribute name="name" type="org.symphonyoss.string" value="Comments renderer"/>
+                <attribute name="id" type="org.symphonyoss.string" value="57d8007dd4b23351441c4cde"/>
+            </entity>
+        </entity>
+    </entity>
 </messageML>
 ```
 Message rendered on Symphony
 
-![Sample "updateCheckItemStateOnCard" rendered](src/docs/sample/)
+![Sample "updateCheckItemStateOnCard" variation "Complete" rendered](src/docs/sample/sample_checklist_item_updated_complete_rendered.png)
+
+![Sample "updateCheckItemStateOnCard" variation "Incomplete" rendered](src/docs/sample/sample_checklist_item_updated_incomplete_rendered.png)
 
 
 ### Lists
 ###### "createList"
-[JSON payload](src/test/resources/)
+* Event maps to "listCreated"
+
+[JSON payload](src/test/resources/payload_trello_list_created.json)
 
 Converted to Symphony Message ML
 ```xml
 <messageML>
-    
+    <entity type="com.symphony.integration.trello.event.createList" version="1.0">
+        <presentationML>
+            Test User created My List 1 in My Trello Board (<a href="https://trello.com/b/t0hu7Ffx"/>)
+        </presentationML>
+        <attribute name="date" type="org.symphonyoss.time.rfc3339" value="2016-08-04T14:06:18.173Z"/>
+        <entity name="memberCreator" type="com.symphony.integration.trello.user" version="1.0">
+            <attribute name="username" type="org.symphonyoss.string" value="testusersymphony"/>
+            <attribute name="displayName" type="org.symphonyoss.string" value="Test User"/>
+        </entity>
+        <entity type="com.symphony.integration.trello.data" version="1.0">
+            <entity type="com.symphony.integration.trello.board" version="1.0">
+                <attribute name="shortUrl" type="com.symphony.uri" value="https://trello.com/b/t0hu7Ffx"/>
+                <attribute name="name" type="org.symphonyoss.string" value="My Trello Board"/>
+                <attribute name="id" type="org.symphonyoss.string" value="57a34b33b350eb2bcc1f42ca"/>
+            </entity>
+            <entity type="com.symphony.integration.trello.list" version="1.0">
+                <attribute name="name" type="org.symphonyoss.string" value="My List 1"/>
+                <attribute name="id" type="org.symphonyoss.string" value="57a34bdaa4050393a6f15a24"/>
+            </entity>
+        </entity>
+    </entity>
 </messageML>
 ```
 Message rendered on Symphony
 
-![Sample "createList" rendered](src/docs/sample/)
+![Sample "createList" rendered](src/docs/sample/sample_list_created_rendered.png)
 
 ###### "updateList"
-[JSON payload](src/test/resources/)
+* Event maps to:
+1. "listArchivedUnarchived" [JSON payload](src/test/resources/payload_trello_list_archived.json)
 
 Converted to Symphony Message ML
 ```xml
 <messageML>
-    
+    <entity type="com.symphony.integration.trello.event.updateList" version="1.0">
+        <presentationML>
+            Test User archived My List 1 from My Trello Board (<a href="https://trello.com/b/t0hu7Ffx"/>)
+        </presentationML>
+        <attribute name="date" type="org.symphonyoss.time.rfc3339" value="2016-08-05T14:19:03.352Z"/>
+        <entity name="memberCreator" type="com.symphony.integration.trello.user" version="1.0">
+            <attribute name="username" type="org.symphonyoss.string" value="testusersymphony"/>
+            <attribute name="displayName" type="org.symphonyoss.string" value="Test User"/>
+        </entity>
+        <entity type="com.symphony.integration.trello.data" version="1.0">
+            <entity type="com.symphony.integration.trello.board" version="1.0">
+                <attribute name="shortUrl" type="com.symphony.uri" value="https://trello.com/b/t0hu7Ffx"/>
+                <attribute name="name" type="org.symphonyoss.string" value="My Trello Board"/>
+                <attribute name="id" type="org.symphonyoss.string" value="57a34b33b350eb2bcc1f42ca"/>
+            </entity>
+            <entity type="com.symphony.integration.trello.list" version="1.0">
+                <attribute name="name" type="org.symphonyoss.string" value="My List 1"/>
+                <attribute name="id" type="org.symphonyoss.string" value="57a34bdaa4050393a6f15a24"/>
+                <attribute name="closed" type="org.symphonyoss.string" value="true"/>
+            </entity>
+            <entity type="com.symphony.integration.trello.changelog" version="1.0">
+                <entity type="com.symphony.integration.trello.change" version="1.0">
+                    <attribute name="fieldName" type="org.symphonyoss.string" value="closed"/>
+                    <attribute name="oldValue" type="org.symphonyoss.string" value="false"/>
+                    <attribute name="newValue" type="org.symphonyoss.string" value="true"/>
+                </entity>
+            </entity>
+        </entity>
+    </entity>
 </messageML>
 ```
 Message rendered on Symphony
 
-![Sample "updateList" rendered](src/docs/sample/)
+![Sample "updateList" rendered](src/docs/sample/sample_list_updated_archived_rendered.png)
+ 
+2. "listRenamed" [JSON payload](src/test/resources/payload_trello_list_renamed.json)
+
+Converted to Symphony Message ML
+```xml
+<messageML>
+    <entity type="com.symphony.integration.trello.event.updateList" version="1.0">
+        <presentationML>
+            Test User updated list name for My List 1 renamed in My Trello Board (<a href="https://trello.com/b/t0hu7Ffx"/>)
+        </presentationML>
+        <attribute name="date" type="org.symphonyoss.time.rfc3339" value="2016-08-04T14:14:45.145Z"/>
+        <entity name="memberCreator" type="com.symphony.integration.trello.user" version="1.0">
+            <attribute name="username" type="org.symphonyoss.string" value="testusersymphony"/>
+            <attribute name="displayName" type="org.symphonyoss.string" value="Test User"/>
+        </entity>
+        <entity type="com.symphony.integration.trello.data" version="1.0">
+            <entity type="com.symphony.integration.trello.board" version="1.0">
+                <attribute name="shortUrl" type="com.symphony.uri" value="https://trello.com/b/t0hu7Ffx"/>
+                <attribute name="name" type="org.symphonyoss.string" value="My Trello Board"/>
+                <attribute name="id" type="org.symphonyoss.string" value="57a34b33b350eb2bcc1f42ca"/>
+            </entity>
+            <entity type="com.symphony.integration.trello.list" version="1.0">
+                <attribute name="name" type="org.symphonyoss.string" value="My List 1 renamed"/>
+                <attribute name="id" type="org.symphonyoss.string" value="57a34bdaa4050393a6f15a24"/>
+            </entity>
+            <entity type="com.symphony.integration.trello.changelog" version="1.0">
+                <entity type="com.symphony.integration.trello.change" version="1.0">
+                    <attribute name="fieldName" type="org.symphonyoss.string" value="name"/>
+                    <attribute name="oldValue" type="org.symphonyoss.string" value="My List 1"/>
+                    <attribute name="newValue" type="org.symphonyoss.string" value="My List 1 renamed"/>
+                </entity>
+            </entity>
+        </entity>
+    </entity>
+</messageML>
+```
+Message rendered on Symphony
+
+![Sample "updateList" rendered](src/docs/sample/sample_list_updated_renamed_rendered.png)
 
 ###### "moveListFromBoard"
-[JSON payload](src/test/resources/)
+* Event maps to "listMovedToOtherBoard"
+
+[JSON payload](src/test/resources/payload_trello_list_moved.json)
 
 Converted to Symphony Message ML
 ```xml
 <messageML>
-    
+    <entity type="com.symphony.integration.trello.event.moveListFromBoard" version="1.0">
+        <presentationML>
+            Test User moved My List 2 from My Trello Board (<a href="https://trello.com/b/t0hu7Ffx"/>)
+        </presentationML>
+        <attribute name="date" type="org.symphonyoss.time.rfc3339" value="2016-08-04T14:21:36.556Z"/>
+        <entity name="memberCreator" type="com.symphony.integration.trello.user" version="1.0">
+            <attribute name="username" type="org.symphonyoss.string" value="testusersymphony"/>
+            <attribute name="displayName" type="org.symphonyoss.string" value="Test User"/>
+        </entity>
+        <entity type="com.symphony.integration.trello.data" version="1.0">
+            <entity type="com.symphony.integration.trello.board" version="1.0">
+                <attribute name="shortUrl" type="com.symphony.uri" value="https://trello.com/b/t0hu7Ffx"/>
+                <attribute name="name" type="org.symphonyoss.string" value="My Trello Board"/>
+                <attribute name="id" type="org.symphonyoss.string" value="57a34b33b350eb2bcc1f42ca"/>
+            </entity>
+            <entity type="com.symphony.integration.trello.list" version="1.0">
+                <attribute name="name" type="org.symphonyoss.string" value="My List 2"/>
+                <attribute name="id" type="org.symphonyoss.string" value="57a34f1affafd51fd10e2071"/>
+            </entity>
+        </entity>
+    </entity>
 </messageML>
 ```
 Message rendered on Symphony
 
-![Sample "moveListFromBoard" rendered](src/docs/sample/)
-
-
+![Sample "moveListFromBoard" rendered](src/docs/sample/sample_list_moved_from_board_rendered.png)
