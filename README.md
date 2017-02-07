@@ -201,7 +201,7 @@ Converted to Symphony Message ML
 ```
 Message rendered on Symphony
 
-![Sample "createCard" rendered](src/docs/sample/)
+![Sample "createCard" rendered](src/docs/sample/sample_card_created_rendered.png)
 
 ###### "updateCard"
 * Event maps to:
