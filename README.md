@@ -1,20 +1,19 @@
 _Note that this project depends on internal Symphony infrastructure (repository.symphony.com), and therefore it can only be built by Symphony LLC employees/partners._
 
 # Trello WebHook Integration
-With the Trello WebHook Integration you can configure which Trello boards you want to receive notifications from, and what sort of activity you want to be notified about.
+The Trello WebHook Integration will allow you to receive notifications in Symphony whenever specific events, defined by you, occur in a Trello board of your choice.
 
 ## [Build Instructions](#build-instructions-for-the-java-developer)
 
 ## How it works
 As a Symphony user you can configure a WebHook with Trello directly from the Trello WebHook Application available on Symphony Market. There you can choose which events you want to be notified from Trello, no further setup required.
 
+The Trello Integration uses OAuth 
+
 ## What formats and events it support and what it produces
 Every integration will receive a message sent in a specific format (depending on the system it ingests) and will usually convert it into an "entity" before it reaches the Symphony platform. It will also, usually, identify the kind of message based on an "event" identifier, which varies based on the third-party system.
 
-This "entity" we generate will have information necessary to be rendered on Symphony Platform, distributed by tags.
-Although these tags may vary greatly among every integration event, they must all have at least the tag ``<presentationML>``, which follows the rules presented [here](https://rest-api.symphony.com/docs/message-format/).
-This is a special tag that must hold all content that would be otherwise drawn on Symphony by the other tags, in a single string on its content.
-It is important that it contains matching information as it is used for visualising a message when a specific renderer is not present, on Symphony mobile apps or content export.
+You can find more details about entities and the Symphony Message ML format [here](https://github.com/symphonyoss/App-Integrations-Core#the-message-ml-format).
 
 There's currently eighteen events from Trello that we support, but those, for convenience, are being mapped to twenty internal events to better represent user interactions with Trello. 
 
@@ -879,8 +878,8 @@ Trello WebHook Integration is compatible with Apache Maven 3.0.5 or above. If yo
 
 To start from scratch, do the following:
 
-1. Clone the source repository using Git: `git clone git@github.com:symphonyoss/App-Integrations-Trello.git`
-2. cd into _App-Integrations-Trello_
-3. Build using maven: `mvn clean install`
-
-Notes: If you don't have access to Symphony Artifactory you should build the Commons module first to have it in your local maven repository. You can find the App-Integrations-Commons project [here](https://github.com/symphonyoss/App-Integrations-Commons)
+1. Build the _App-Integrations-Trello_ dependencies (so you have them in your Maven local repository):
+> [_App-Integrations-Commons_](https://github.com/symphonyoss/App-Integrations-Commons)
+2. Clone the source repository using Git: `git clone git@github.com:symphonyoss/App-Integrations-Trello.git`
+3. cd into _App-Integrations-Trello_
+4. Build using maven: `mvn clean install`
