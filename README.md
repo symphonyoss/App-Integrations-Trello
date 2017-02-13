@@ -6,9 +6,15 @@ The Trello WebHook Integration will allow you to receive notifications in Sympho
 ## [Build Instructions](#build-instructions-for-the-java-developer)
 
 ## How it works
-As a Symphony user you can configure a WebHook with Trello directly from the Trello WebHook Application available on Symphony Market. There you can choose which events you want to be notified from Trello, no further setup required.
+As a Symphony user you can configure a WebHook with Trello directly from the Trello WebHook Application available on Symphony Market. There you can choose which events you want to be notified from Trello, which we'll cover in more details ahead.
 
-The Trello Integration uses OAuth 
+### Trello Authentication
+Unlike other integrations so far, when configuring Trello, we do not provide a URL to be pointed at on the referred application. As Trello only provides APIs to configure WebHooks and not a graphical interface, we created an interface where one can choose which events he wants to be notified by and we do the work calling the APIs to actually create a connection.
+
+For this to happen, one will need to authorize Symphony Integration App with Trello, as a pop up will show asking for you to log in to your Trello account and proceed with the action.
+
+This is done via Trello "Authorize Route". For more details about how it works, you can check out [this section of Trello API documentation](https://developers.trello.com/authorize).
+As of our alpha version, we recover and store the token returned by the Authorize Route in the database "as is", without encryption yet. A proper and more secure way of handling this is on the roadmap for Symphony's Trello Integration.
 
 ## What formats and events it support and what it produces
 Every integration will receive a message sent in a specific format (depending on the system it ingests) and will usually convert it into an "entity" before it reaches the Symphony platform. It will also, usually, identify the kind of message based on an "event" identifier, which varies based on the third-party system.
@@ -17,7 +23,7 @@ You can find more details about entities and the Symphony Message ML format [her
 
 There's currently eighteen events from Trello that we support, but those, for convenience, are being mapped to twenty internal events to better represent user interactions with Trello. 
 
-Those events are grouped inside four main categories: Boards, Cards, Lists and Checklists.
+Those events are grouped inside four main categories: [Boards](#boards), [Cards](#cards), [Lists](#lists) and [Checklists](#checklists).
 On each of those we'll detail which events maps to our internal events, the payload that Trello sends to us, what we convert those into and what the message looks like when posted on the Symphony platform.
 
 ### Boards
