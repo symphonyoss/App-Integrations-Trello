@@ -9,7 +9,7 @@ The Trello WebHook Integration will allow you to receive notifications in Sympho
 As a Symphony user you can configure a WebHook with Trello directly from the Trello WebHook Application available on Symphony Market. There you can choose which events you want to be notified from Trello, which we'll cover in more details ahead.
 
 ### Trello Authentication
-Unlike other integrations so far, when configuring Trello, we do not provide a URL to be pointed at on the referred application. As Trello only provides APIs to configure WebHooks and not a graphical interface, we created an interface where one can choose which events he wants to be notified by and we do the work calling the APIs to actually create a connection.
+Unlike other integrations so far, when configuring Trello, we do not provide a URL to be pointed at on the referred application. As Trello only provides APIs to configure WebHooks and not a graphical interface, we created an interface where one can choose which events one wants to be notified by and we do the work calling the APIs to actually create a connection.
 
 For this to happen, one will need to authorize Symphony Integration App with Trello, as a pop up will show asking for you to log in to your Trello account and proceed with the action.
 
