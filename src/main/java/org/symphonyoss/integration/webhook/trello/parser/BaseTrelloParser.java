@@ -36,20 +36,20 @@ import static org.symphonyoss.integration.webhook.trello.TrelloEntityConstants.T
 import static org.symphonyoss.integration.webhook.trello.TrelloEntityConstants.USERNAME;
 
 import com.symphony.api.pod.model.ConfigurationInstance;
-import com.symphony.logging.ISymphonyLogger;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.symphonyoss.integration.utils.WebHookConfigurationUtils;
-import org.symphonyoss.integration.service.UserService;
 import org.symphonyoss.integration.entity.Entity;
 import org.symphonyoss.integration.entity.EntityBuilder;
 import org.symphonyoss.integration.entity.model.User;
 import org.symphonyoss.integration.exception.EntityXMLGeneratorException;
-import org.symphonyoss.integration.logging.IntegrationBridgeCloudLoggerFactory;
 import org.symphonyoss.integration.parser.SafeString;
 import org.symphonyoss.integration.parser.SafeStringUtils;
+import org.symphonyoss.integration.service.UserService;
+import org.symphonyoss.integration.utils.WebHookConfigurationUtils;
 import org.symphonyoss.integration.webhook.trello.model.TrelloBoard;
 import org.symphonyoss.integration.webhook.trello.model.TrelloMember;
 
@@ -66,8 +66,7 @@ import java.util.List;
  */
 public abstract class BaseTrelloParser implements TrelloParser {
 
-  private static final ISymphonyLogger LOG =
-      IntegrationBridgeCloudLoggerFactory.getLogger(BaseTrelloParser.class);
+  private static final Logger LOG = LoggerFactory.getLogger(BaseTrelloParser.class);
 
   private String trelloUser;
 
