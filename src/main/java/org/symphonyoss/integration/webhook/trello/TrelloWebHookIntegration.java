@@ -19,13 +19,12 @@ package org.symphonyoss.integration.webhook.trello;
 import static org.symphonyoss.integration.webhook.trello.TrelloEntityConstants.ACTION;
 import static org.symphonyoss.integration.webhook.trello.TrelloEntityConstants.TYPE;
 
-import com.symphony.api.pod.model.ConfigurationInstance;
-import com.symphony.api.pod.model.V1Configuration;
-
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.symphonyoss.integration.model.config.IntegrationInstance;
+import org.symphonyoss.integration.model.config.IntegrationSettings;
 import org.symphonyoss.integration.webhook.WebHookIntegration;
 import org.symphonyoss.integration.webhook.WebHookPayload;
 import org.symphonyoss.integration.webhook.exception.WebHookParseException;
@@ -72,10 +71,10 @@ public class TrelloWebHookIntegration extends WebHookIntegration {
   }
 
   @Override
-  public void onConfigChange(V1Configuration conf) {
-    super.onConfigChange(conf);
+  public void onConfigChange(IntegrationSettings settings) {
+    super.onConfigChange(settings);
 
-    String trelloUser = conf.getType();
+    String trelloUser = settings.getType();
     for (TrelloParser parser : parsers.values()) {
       parser.setTrelloUser(trelloUser);
     }
@@ -89,7 +88,7 @@ public class TrelloWebHookIntegration extends WebHookIntegration {
    * @throws WebHookParseException when any exception occurs when parsing the payload.
    */
   @Override
-  public String parse(ConfigurationInstance instance, WebHookPayload input)
+  public String parse(IntegrationInstance instance, WebHookPayload input)
       throws WebHookParseException {
     try {
       JsonNode rootNode = mapper.readTree(input.getBody());

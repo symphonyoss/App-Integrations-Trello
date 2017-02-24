@@ -23,9 +23,6 @@ import static org.junit.Assert.assertTrue;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.when;
 
-import com.symphony.api.pod.client.ApiException;
-import com.symphony.api.pod.model.ConfigurationInstance;
-
 import com.fasterxml.jackson.databind.JsonNode;
 import org.junit.Before;
 import org.junit.Test;
@@ -35,6 +32,7 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.symphonyoss.integration.authentication.AuthenticationProxy;
 import org.symphonyoss.integration.entity.model.User;
+import org.symphonyoss.integration.model.config.IntegrationInstance;
 import org.symphonyoss.integration.webhook.exception.WebHookParseException;
 
 import java.io.IOException;
@@ -52,7 +50,7 @@ public class BoardAddedToTeamTrelloParserTest extends CommonTrelloTest {
   @InjectMocks
   private BoardAddedToTeamTrelloParser parser = new BoardAddedToTeamTrelloParser();
 
-  private ConfigurationInstance instance = new ConfigurationInstance();
+  private IntegrationInstance instance = new IntegrationInstance();
 
   @Before
   public void setup() {
@@ -73,8 +71,7 @@ public class BoardAddedToTeamTrelloParserTest extends CommonTrelloTest {
   }
 
   @Test
-  public void testBoardAddedToTeamWithEmail() throws IOException, WebHookParseException,
-      ApiException {
+  public void testBoardAddedToTeamWithEmail() throws IOException, WebHookParseException {
     JsonNode rootNode = getJsonFile("payload_trello_board_added_team.json");
 
     User user = new User();

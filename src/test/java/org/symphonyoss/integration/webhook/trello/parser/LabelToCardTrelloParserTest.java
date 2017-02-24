@@ -25,8 +25,6 @@ import static org.symphonyoss.integration.webhook.trello.TrelloEntityConstants.D
 import static org.symphonyoss.integration.webhook.trello.TrelloEntityConstants.LABEL;
 import static org.symphonyoss.integration.webhook.trello.TrelloEntityConstants.NAME;
 
-import com.symphony.api.pod.model.ConfigurationInstance;
-
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.junit.Before;
@@ -34,6 +32,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.runners.MockitoJUnitRunner;
+import org.symphonyoss.integration.model.config.IntegrationInstance;
 
 import java.io.IOException;
 
@@ -47,7 +46,7 @@ public class LabelToCardTrelloParserTest extends CommonTrelloTest {
   @InjectMocks
   private LabelToCardTrelloParser parser = new LabelToCardTrelloParser();
 
-  private ConfigurationInstance instance = new ConfigurationInstance();
+  private IntegrationInstance instance = new IntegrationInstance();
 
   @Before
   public void setup() {

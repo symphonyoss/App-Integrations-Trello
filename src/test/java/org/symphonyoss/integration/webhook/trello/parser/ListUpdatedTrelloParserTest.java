@@ -21,15 +21,13 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
-import com.symphony.api.pod.client.ApiException;
-import com.symphony.api.pod.model.ConfigurationInstance;
-
 import com.fasterxml.jackson.databind.JsonNode;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.runners.MockitoJUnitRunner;
+import org.symphonyoss.integration.model.config.IntegrationInstance;
 import org.symphonyoss.integration.webhook.exception.WebHookParseException;
 
 import java.io.IOException;
@@ -44,7 +42,7 @@ public class ListUpdatedTrelloParserTest extends CommonTrelloTest {
   @InjectMocks
   private ListTrelloParser parser = new ListUpdatedTrelloParser();
 
-  private ConfigurationInstance instance = new ConfigurationInstance();
+  private IntegrationInstance instance = new IntegrationInstance();
 
   @Before
   public void setup() {
@@ -68,7 +66,7 @@ public class ListUpdatedTrelloParserTest extends CommonTrelloTest {
   }
 
   @Test
-  public void testListArchived() throws IOException, WebHookParseException, ApiException {
+  public void testListArchived() throws IOException, WebHookParseException {
     String optionalProperties =
         "{ \"notifications\": [\"listCreated\", \"listArchivedUnarchived\"] }";
     instance.setOptionalProperties(optionalProperties);
@@ -83,7 +81,7 @@ public class ListUpdatedTrelloParserTest extends CommonTrelloTest {
   }
 
   @Test
-  public void testListUnarchived() throws IOException, WebHookParseException, ApiException {
+  public void testListUnarchived() throws IOException, WebHookParseException {
     String optionalProperties =
         "{ \"notifications\": [\"listCreated\", \"listArchivedUnarchived\"] }";
     instance.setOptionalProperties(optionalProperties);
