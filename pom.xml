@@ -11,6 +11,11 @@
 
     <artifactId>integration-trello</artifactId>
 
+    <properties>
+        <webapp.directory>trello</webapp.directory>
+        <rpm.name>trello-symphony-integration</rpm.name>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.symphonyoss</groupId>
