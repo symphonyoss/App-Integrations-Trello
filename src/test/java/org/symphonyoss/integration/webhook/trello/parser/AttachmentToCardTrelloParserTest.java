@@ -22,9 +22,6 @@ import static org.junit.Assert.assertNotNull;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.when;
 
-import com.symphony.api.pod.client.ApiException;
-import com.symphony.api.pod.model.ConfigurationInstance;
-
 import com.fasterxml.jackson.databind.JsonNode;
 import org.junit.Before;
 import org.junit.Test;
@@ -32,6 +29,7 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.symphonyoss.integration.entity.model.User;
+import org.symphonyoss.integration.model.config.IntegrationInstance;
 
 import java.io.IOException;
 
@@ -45,7 +43,7 @@ public class AttachmentToCardTrelloParserTest extends CommonTrelloTest {
   @InjectMocks
   private AttachmentToCardTrelloParser parser = new AttachmentToCardTrelloParser();
 
-  private ConfigurationInstance instance = new ConfigurationInstance();
+  private IntegrationInstance instance = new IntegrationInstance();
 
 
   @Before
@@ -66,7 +64,7 @@ public class AttachmentToCardTrelloParserTest extends CommonTrelloTest {
   }
 
   @Test
-  public void testAddAttachmentToDropbox() throws TrelloParserException, IOException, ApiException {
+  public void testAddAttachmentToDropbox() throws TrelloParserException, IOException {
     JsonNode rootNode = getJsonFile("payload_trello_attachment_dropbox.json");
 
     User user = new User();

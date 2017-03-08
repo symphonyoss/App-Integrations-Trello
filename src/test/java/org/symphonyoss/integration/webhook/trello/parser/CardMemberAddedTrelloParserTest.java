@@ -24,9 +24,6 @@ import static org.mockito.Matchers.anyString;
 import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.when;
 
-import com.symphony.api.pod.client.ApiException;
-import com.symphony.api.pod.model.ConfigurationInstance;
-
 import com.fasterxml.jackson.databind.JsonNode;
 import org.junit.Before;
 import org.junit.Test;
@@ -34,6 +31,7 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.symphonyoss.integration.entity.model.User;
+import org.symphonyoss.integration.model.config.IntegrationInstance;
 import org.symphonyoss.integration.webhook.exception.WebHookParseException;
 
 import java.io.IOException;
@@ -48,7 +46,7 @@ public class CardMemberAddedTrelloParserTest extends CommonTrelloTest {
   @InjectMocks
   private CardMemberAddedTrelloParser parser = new CardMemberAddedTrelloParser();
 
-  private ConfigurationInstance instance = new ConfigurationInstance();
+  private IntegrationInstance instance = new IntegrationInstance();
 
   @Before
   public void setup() {
@@ -71,7 +69,7 @@ public class CardMemberAddedTrelloParserTest extends CommonTrelloTest {
 
   @Test
   public void testMemberAddedToBoardWithEmailWithLabelNames() throws IOException,
-      WebHookParseException, ApiException {
+      WebHookParseException {
     JsonNode rootNode = getJsonFile("payload_trello_card_member_added.json");
     assertTrue(parser.filterNotifications(instance, rootNode));
 

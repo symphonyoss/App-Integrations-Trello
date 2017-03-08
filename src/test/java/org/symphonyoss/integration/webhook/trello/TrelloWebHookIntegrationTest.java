@@ -18,8 +18,6 @@ package org.symphonyoss.integration.webhook.trello;
 
 import static org.junit.Assert.assertNull;
 
-import com.symphony.api.pod.model.ConfigurationInstance;
-
 import com.fasterxml.jackson.databind.JsonNode;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -29,6 +27,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Spy;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.test.util.ReflectionTestUtils;
+import org.symphonyoss.integration.model.config.IntegrationInstance;
 import org.symphonyoss.integration.webhook.WebHookPayload;
 import org.symphonyoss.integration.webhook.exception.WebHookParseException;
 import org.symphonyoss.integration.webhook.trello.parser.AttachmentToCardTrelloParser;
@@ -69,7 +68,7 @@ public class TrelloWebHookIntegrationTest {
   @InjectMocks
   private TrelloWebHookIntegration trelloWebHookIntegration = new TrelloWebHookIntegration();
 
-  private ConfigurationInstance instance = new ConfigurationInstance();
+  private IntegrationInstance instance = new IntegrationInstance();
 
   @BeforeClass
   public static void init() {
@@ -147,12 +146,12 @@ public class TrelloWebHookIntegrationTest {
     }
 
     @Override
-    public boolean filterNotifications(ConfigurationInstance instance, JsonNode payload) {
+    public boolean filterNotifications(IntegrationInstance instance, JsonNode payload) {
       return false;
     }
 
     @Override
-    public String parse(ConfigurationInstance instance, JsonNode node)
+    public String parse(IntegrationInstance instance, JsonNode node)
         throws TrelloParserException {
       return null;
     }

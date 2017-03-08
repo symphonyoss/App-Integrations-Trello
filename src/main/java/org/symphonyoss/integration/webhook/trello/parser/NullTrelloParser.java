@@ -16,10 +16,9 @@
 
 package org.symphonyoss.integration.webhook.trello.parser;
 
-import com.symphony.api.pod.model.ConfigurationInstance;
-
 import com.fasterxml.jackson.databind.JsonNode;
 import org.springframework.stereotype.Component;
+import org.symphonyoss.integration.model.config.IntegrationInstance;
 
 import java.util.Collections;
 import java.util.List;
@@ -38,12 +37,12 @@ public class NullTrelloParser implements TrelloParser {
   }
 
   @Override
-  public boolean filterNotifications(ConfigurationInstance instance, JsonNode payload) {
+  public boolean filterNotifications(IntegrationInstance instance, JsonNode payload) {
     return true;
   }
 
   @Override
-  public String parse(ConfigurationInstance instance, JsonNode node)
+  public String parse(IntegrationInstance instance, JsonNode node)
       throws TrelloParserException {
     return null;
   }

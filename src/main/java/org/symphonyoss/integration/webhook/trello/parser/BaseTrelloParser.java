@@ -35,8 +35,6 @@ import static org.symphonyoss.integration.webhook.trello.TrelloEntityConstants.T
 import static org.symphonyoss.integration.webhook.trello.TrelloEntityConstants.TYPE;
 import static org.symphonyoss.integration.webhook.trello.TrelloEntityConstants.USERNAME;
 
-import com.symphony.api.pod.model.ConfigurationInstance;
-
 import com.fasterxml.jackson.databind.JsonNode;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -46,6 +44,7 @@ import org.symphonyoss.integration.entity.Entity;
 import org.symphonyoss.integration.entity.EntityBuilder;
 import org.symphonyoss.integration.entity.model.User;
 import org.symphonyoss.integration.exception.EntityXMLGeneratorException;
+import org.symphonyoss.integration.model.config.IntegrationInstance;
 import org.symphonyoss.integration.parser.SafeString;
 import org.symphonyoss.integration.parser.SafeStringUtils;
 import org.symphonyoss.integration.service.UserService;
@@ -79,14 +78,14 @@ public abstract class BaseTrelloParser implements TrelloParser {
 
   /**
    * Creates the presentation and entityML for the incoming payload.
-   * @param instance Configuration instance
+   * @param instance Integration instance
    * @param payload Trello payload to be parsed
    * @return A messageML document containing the presentationML and entityML for the given
    * Trello payload.
    * @throws TrelloParserException Reports failure to validate the incoming payload
    */
   @Override
-  public String parse(ConfigurationInstance instance, JsonNode payload)
+  public String parse(IntegrationInstance instance, JsonNode payload)
       throws TrelloParserException {
     final JsonNode action = payload.path(ACTION);
     final JsonNode data = action.path(DATA);
@@ -120,11 +119,11 @@ public abstract class BaseTrelloParser implements TrelloParser {
 
   /**
    * Filter events according to the user settings.
-   * @param instance Configuration instance
+   * @param instance Integration instance
    * @param payload Trello payload
    * @return true if the notifications must be handled or false otherwise
    */
-  public boolean filterNotifications(ConfigurationInstance instance, JsonNode payload) {
+  public boolean filterNotifications(IntegrationInstance instance, JsonNode payload) {
     String optionalProperties = instance.getOptionalProperties();
     String instanceId = instance.getInstanceId();
 

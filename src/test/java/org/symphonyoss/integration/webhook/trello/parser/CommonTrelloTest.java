@@ -19,17 +19,14 @@ package org.symphonyoss.integration.webhook.trello.parser;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.when;
 
-import com.symphony.api.pod.model.UserV2;
-
 import com.fasterxml.jackson.databind.JsonNode;
 import org.apache.commons.io.FileUtils;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.mockito.Mock;
-import org.symphonyoss.integration.service.UserService;
 import org.symphonyoss.integration.entity.model.User;
 import org.symphonyoss.integration.json.JsonUtils;
-import org.symphonyoss.integration.webhook.trello.model.TrelloMember;
+import org.symphonyoss.integration.service.UserService;
 
 import java.io.File;
 import java.io.IOException;
@@ -63,17 +60,4 @@ public class CommonTrelloTest {
     return JsonUtils.readTree(classLoader.getResourceAsStream(jsonFileName));
   }
 
-  protected UserV2 createUser(JsonNode node, Long userId) {
-    TrelloMember member = new TrelloMember(node);
-
-    String username = member.getUsername();
-
-    UserV2 userV2 = new UserV2();
-    userV2.setUsername(username);
-    userV2.setEmailAddress(username + "@symphony.com");
-    userV2.setId(userId);
-    userV2.setDisplayName(member.getFullName());
-
-    return userV2;
-  }
 }
