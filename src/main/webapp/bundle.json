@@ -1,0 +1,14 @@
+{
+  "applications": [
+    {
+      "type": "sandbox",
+      "id": "devTrelloWebHookIntegration",
+      "name": "Trello",
+      "blurb": "Trello in Development Mode",
+      "publisher": "Symphony",
+      "url": "https://localhost.symphony.com/apps/trello/controller.html?configurationId=57d17c6be4b041c1c007be4d&botUserId=7627861922651&id=devTrelloWebHookIntegration&context=apps/trello",
+      "icon": "https://localhost.symphony.com/apps/trello/img/appstore-logo.png",
+      "domain": ".symphony.com"
+    }
+  ]
+}
