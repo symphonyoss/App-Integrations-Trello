@@ -62,6 +62,18 @@ public class CommentCardTrelloParserTest extends CommonTrelloTest {
   }
 
   @Test
+  public void testCommentWithLineBreak() throws TrelloParserException, IOException {
+    JsonNode rootNode = getJsonFile("payload_trello_card_commented_with_linebreak.json");
+    assertTrue(parser.filterNotifications(instance, rootNode));
+
+    String result = parser.parse(instance, rootNode);
+    assertNotNull(result);
+
+    String expected = readFile("payload_trello_card_commented_with_linebreak_expected_message.xml");
+    assertEquals(expected, result);
+  }
+
+  @Test
   public void testIgnoreNotification() throws IOException {
     String optionalProperties = "{ \"notifications\": [\"listCreated\"] }";
     instance.setOptionalProperties(optionalProperties);
