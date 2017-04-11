@@ -25,6 +25,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.symphonyoss.integration.model.config.IntegrationInstance;
 import org.symphonyoss.integration.model.config.IntegrationSettings;
+import org.symphonyoss.integration.model.message.Message;
 import org.symphonyoss.integration.webhook.WebHookIntegration;
 import org.symphonyoss.integration.webhook.WebHookPayload;
 import org.symphonyoss.integration.webhook.exception.WebHookParseException;
@@ -88,7 +89,7 @@ public class TrelloWebHookIntegration extends WebHookIntegration {
    * @throws WebHookParseException when any exception occurs when parsing the payload.
    */
   @Override
-  public String parse(IntegrationInstance instance, WebHookPayload input)
+  public Message parse(IntegrationInstance instance, WebHookPayload input)
       throws WebHookParseException {
     try {
       JsonNode rootNode = mapper.readTree(input.getBody());
