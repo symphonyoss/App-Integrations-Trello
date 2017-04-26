@@ -16,9 +16,6 @@
 
 package org.symphonyoss.integration.webhook.trello;
 
-import static org.symphonyoss.integration.webhook.trello.TrelloEntityConstants.ACTION;
-import static org.symphonyoss.integration.webhook.trello.TrelloEntityConstants.TYPE;
-
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,12 +30,16 @@ import org.symphonyoss.integration.webhook.trello.parser.NullTrelloParser;
 import org.symphonyoss.integration.webhook.trello.parser.TrelloParser;
 import org.symphonyoss.integration.webhook.trello.parser.TrelloParserException;
 
+import javax.annotation.PostConstruct;
+import javax.ws.rs.core.MediaType;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.PostConstruct;
+import static org.symphonyoss.integration.webhook.trello.TrelloEntityConstants.ACTION;
+import static org.symphonyoss.integration.webhook.trello.TrelloEntityConstants.TYPE;
 
 /**
  * Implementation of a WebHook to integrate with Trello.
@@ -121,5 +122,15 @@ public class TrelloWebHookIntegration extends WebHookIntegration {
     }
 
     return result;
+  }
+
+  /**
+   * @see WebHookIntegration#getSupportedContentTypes()
+   */
+  @Override
+  public List<MediaType> getSupportedContentTypes() {
+    List<MediaType> supportedContentTypes = new ArrayList<>();
+    supportedContentTypes.add(MediaType.WILDCARD_TYPE);
+    return supportedContentTypes;
   }
 }
