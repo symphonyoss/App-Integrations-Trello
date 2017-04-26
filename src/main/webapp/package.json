@@ -1,6 +1,6 @@
 {
   "name": "integration-trello",
-  "version": "0.11.0-SNAPSHOT",
+  "version": "0.11.0",
   "description": "Symphony App Integrations - Trello",
   "main": "index.js",
   "scripts": {
