@@ -73,6 +73,19 @@ public class CommentCardTrelloParserTest extends CommonTrelloTest {
     assertEquals(expected, result);
   }
 
+
+  @Test
+  public void testCommentWithUrl() throws TrelloParserException, IOException {
+    JsonNode rootNode = getJsonFile("payload_trello_card_commented_with_URL.json");
+    assertTrue(parser.filterNotifications(instance, rootNode));
+
+    String result = parser.parse(instance, rootNode);
+    assertNotNull(result);
+
+    String expected = readFile("payload_trello_card_commented_with_URL_expected_message.xml");
+    assertEquals(expected, result);
+  }
+
   @Test
   public void testIgnoreNotification() throws IOException {
     String optionalProperties = "{ \"notifications\": [\"listCreated\"] }";
