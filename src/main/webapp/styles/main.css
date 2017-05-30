@@ -29,7 +29,7 @@ section.events:last-child {
 	margin-bottom: 24px;
 }
 .createview section h1 {
-  font: 600 18px "Alright Sans", "Avenir", "Tahoma", sans-serif; 
+  font: 600 18px "Alright Sans", "Avenir", "Tahoma", sans-serif;
   margin-bottom: 20px;
   padding-bottom: 10px;
 }
@@ -59,7 +59,7 @@ section.events:last-child {
   margin-right: 10px;
 }
 .whi-table #header button {
-  
+
 }
 .whi-table table {
   float: left;
@@ -80,7 +80,7 @@ section.events:last-child {
   color: #000;
 }
 .whi-table table tbody tr {
- border-bottom: 1px solid rgba(0, 0, 0, 0.1); 
+ border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 .whi-table table tr td {
   padding: 0 35px 0 0;
@@ -420,7 +420,7 @@ figure {
 }
 .posting-location-container .input-container {
   float: left;
-  width: 100%;
+  width: 93%;
   max-width: 490px;
 }
 .dark .posting-location-container label,
@@ -718,7 +718,7 @@ figure {
   text-decoration: none;
 }
 .board-select a i {
-  
+
 }
 .dark .board-select a,
 .dark-contrast .board-select a {
@@ -769,7 +769,7 @@ figure {
 .board-select ul li, .board-select ul li a {
   flex-grow: 1;
   width: 100%;
-  box-sizing: border-box; 
+  box-sizing: border-box;
 }
 .board-select ul li {
   width: 100%;
@@ -796,11 +796,11 @@ figure {
 .dark-contrast .board-select ul li a:hover {
   background: hsla(0,0%,100%,.05);
 }
-.light .board-select ul li a, 
+.light .board-select ul li a,
 .light-contrast .board-select ul li a {
   background: rgba(0,0,0,.02);
 }
-.light .board-select ul li a:hover, 
+.light .board-select ul li a:hover,
 .light-contrast .board-select ul li a:hover {
   background: rgba(0,0,0,.05);
 }
@@ -910,5 +910,5 @@ figure {
   .board-events > div {
     max-width: 100%;
   }
-  
+
 }
