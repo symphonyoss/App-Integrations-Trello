@@ -1,4 +1,7 @@
-[![Symphony Software Foundation - Incubating](https://cdn.rawgit.com/symphonyoss/contrib-toolbox/master/images/ssf-badge-incubating.svg)](https://symphonyoss.atlassian.net/wiki/display/FM/Incubating) [![Build Status](https://travis-ci.org/symphonyoss/App-Integrations-Trello.svg?branch=dev)](https://travis-ci.org/symphonyoss/App-Integrations-Trello) [![Dependencies](https://www.versioneye.com/user/projects/58d049f96893fd003facc008/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/58d049f96893fd003facc008)
+[![Symphony Software Foundation - Incubating](https://cdn.rawgit.com/symphonyoss/contrib-toolbox/master/images/ssf-badge-incubating.svg)](https://symphonyoss.atlassian.net/wiki/display/FM/Incubating)
+[![Build Status](https://travis-ci.org/symphonyoss/App-Integrations-Trello.svg?branch=dev)](https://travis-ci.org/symphonyoss/App-Integrations-Trello)
+[![Dependencies](https://www.versioneye.com/user/projects/58d049f96893fd003facc008/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/58d049f96893fd003facc008)
+[![Validation Status](https://scan.coverity.com/projects/12826/badge.svg?flat=1)](https://scan.coverity.com/projects/symphonyoss-app-integrations-trello)
 
 # Trello WebHook Integration
 The Trello WebHook Integration will allow you to receive notifications in Symphony whenever specific events, defined by you, occur in a Trello board of your choice.
