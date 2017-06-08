@@ -55,10 +55,12 @@ function callWebPackProd(output) {
                         template: "./html/app.html",
                         inject: false
                     }),
-                    new CopyWebpackPlugin([
-                        { from: './img', to: 'img' },
-                        { from: './bundle.json', to: 'bundle' }
-                    ])
+                    new CopyWebpackPlugin([{
+                        from: './bundle.json'
+                    }]),
+                    new CopyWebpackPlugin([{
+                        from: './img', to: 'img'
+                    }]),
                 ]
             },
             null
