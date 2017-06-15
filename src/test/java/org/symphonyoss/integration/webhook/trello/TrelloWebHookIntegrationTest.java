@@ -17,8 +17,11 @@
 package org.symphonyoss.integration.webhook.trello;
 
 import static org.junit.Assert.assertNull;
+import static org.mockito.Mockito.spy;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
-import com.fasterxml.jackson.databind.JsonNode;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -28,6 +31,7 @@ import org.mockito.Spy;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.test.util.ReflectionTestUtils;
 import org.symphonyoss.integration.model.config.IntegrationInstance;
+import org.symphonyoss.integration.model.config.IntegrationSettings;
 import org.symphonyoss.integration.webhook.WebHookPayload;
 import org.symphonyoss.integration.webhook.exception.WebHookParseException;
 import org.symphonyoss.integration.webhook.trello.parser.AttachmentToCardTrelloParser;
@@ -49,9 +53,10 @@ import org.symphonyoss.integration.webhook.trello.parser.TrelloParserException;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+
+import javax.ws.rs.core.MediaType;
 
 /**
  * Test class to validate {@link TrelloWebHookIntegration}
@@ -61,6 +66,8 @@ import java.util.List;
 public class TrelloWebHookIntegrationTest {
 
   private static final String TEST_EVENT = "testEvent";
+
+  private static final String MOCK_TYPE = "trelloWebHookIntegration";
 
   @Spy
   private static List<TrelloParser> beans = new ArrayList<>();
@@ -134,29 +141,26 @@ public class TrelloWebHookIntegrationTest {
     assertNull(trelloWebHookIntegration.parse(instance, payload));
   }
 
-  /**
-   * This class is being used to simulate the behaviour when the integration doesn't know how to
-   * handle the event received.
-   */
-  private static final class MockTrelloParser implements TrelloParser {
+  @Test
+  public void testSupportedContentTypes() {
+    List<MediaType> supportedContentTypes = new ArrayList<>();
+    supportedContentTypes.add(MediaType.WILDCARD_TYPE);
 
-    @Override
-    public List<String> getEvents() {
-      return Arrays.asList(TEST_EVENT);
-    }
+    Assert.assertEquals(trelloWebHookIntegration.getSupportedContentTypes(), supportedContentTypes);
+  }
 
-    @Override
-    public boolean filterNotifications(IntegrationInstance instance, JsonNode payload) {
-      return false;
-    }
+  @Test
+  public void testOnConfigChange() {
+    TrelloParser trelloParser1 = spy(AttachmentToCardTrelloParser.class);
 
-    @Override
-    public String parse(IntegrationInstance instance, JsonNode node)
-        throws TrelloParserException {
-      return null;
-    }
+    beans.add(trelloParser1);
+    trelloWebHookIntegration.init();
 
-    @Override
-    public void setTrelloUser(String trelloUser) {}
+    IntegrationSettings settings = new IntegrationSettings();
+    settings.setType(MOCK_TYPE);
+
+    trelloWebHookIntegration.onConfigChange(settings);
+
+    verify(trelloParser1, times(1)).setTrelloUser(MOCK_TYPE);
   }
 }
