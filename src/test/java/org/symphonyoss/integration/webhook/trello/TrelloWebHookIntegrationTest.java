@@ -17,12 +17,10 @@
 package org.symphonyoss.integration.webhook.trello;
 
 import static org.junit.Assert.assertNull;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
-import com.fasterxml.jackson.databind.JsonNode;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -55,7 +53,6 @@ import org.symphonyoss.integration.webhook.trello.parser.TrelloParserException;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -142,32 +139,6 @@ public class TrelloWebHookIntegrationTest {
 
     WebHookPayload payload = new WebHookPayload(Collections.<String, String>emptyMap(), Collections.<String, String>emptyMap(), body);
     assertNull(trelloWebHookIntegration.parse(instance, payload));
-  }
-
-  /**
-   * This class is being used to simulate the behaviour when the integration doesn't know how to
-   * handle the event received.
-   */
-  private static final class MockTrelloParser implements TrelloParser {
-
-    @Override
-    public List<String> getEvents() {
-      return Arrays.asList(TEST_EVENT);
-    }
-
-    @Override
-    public boolean filterNotifications(IntegrationInstance instance, JsonNode payload) {
-      return false;
-    }
-
-    @Override
-    public String parse(IntegrationInstance instance, JsonNode node)
-        throws TrelloParserException {
-      return null;
-    }
-
-    @Override
-    public void setTrelloUser(String trelloUser) {}
   }
 
   @Test
