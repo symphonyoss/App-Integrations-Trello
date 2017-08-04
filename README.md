@@ -2,6 +2,8 @@
 [![Build Status](https://travis-ci.org/symphonyoss/App-Integrations-Trello.svg?branch=dev)](https://travis-ci.org/symphonyoss/App-Integrations-Trello)
 [![Dependencies](https://www.versioneye.com/user/projects/58d049f96893fd003facc008/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/58d049f96893fd003facc008)
 [![Validation Status](https://scan.coverity.com/projects/12826/badge.svg?flat=1)](https://scan.coverity.com/projects/symphonyoss-app-integrations-trello)
+[![codecov](https://codecov.io/gh/symphonyoss/App-Integrations-Trello/branch/dev/graph/badge.svg)](https://codecov.io/gh/symphonyoss/App-Integrations-Trello)
+
 
 # Trello WebHook Integration
 The Trello WebHook Integration will allow you to receive notifications in Symphony whenever specific events, defined by you, occur in a Trello board of your choice.
