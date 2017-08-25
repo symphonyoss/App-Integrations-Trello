@@ -1,7 +1,8 @@
 //create our own service
-var app_id = getParameterByName('id');
-var listService = SYMPHONY.services.register(app_id+":controller");
 import config from './config';
+
+var app_id = config.app_id;
+var listService = SYMPHONY.services.register(app_id+":controller");
 
 SYMPHONY.remote.hello().then(function(data) {
     SYMPHONY.application.register(app_id, ["ui", "modules", "applications-nav", "account", "integrationConfigService", "stream-service"], [app_id+":controller"]).then(function(response) {
@@ -21,7 +22,7 @@ SYMPHONY.remote.hello().then(function(data) {
                 //invoke the module service to show our own application in the grid
                 var confId = getParameterByName('configurationId');
                 var botUserId = getParameterByName('botUserId');
-                var context = getParameterByName('context') ? "/"+getParameterByName('context') : "";
+                var context = "/" + config.app_context;
                 var host = window.location.protocol + "//" + window.location.hostname + ":" + window.location.port;
                 modulesService.show(app_id, {title: config.app_title}, app_id+":controller", host + context + "/app.html?configurationId="+confId+"&botUserId="+botUserId+"&id="+app_id, {canFloat: true});
             },
