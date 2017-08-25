@@ -7,9 +7,10 @@ import '../styles/main.css'
 import Factory from './factory'
 import App from '../components/App/App'
 import Auth from './auth'
+import config from './config'
 
 // get app id
-const app_id = getParameterByName('id');
+const app_id = config.app_id;
 // get configurationId
 const configurationId = getParameterByName('configurationId');
 
