@@ -7,3 +7,5 @@ target/
 
 # NPM
 src/main/webapp/node_modules
+npm-debug.log
+package-lock.json
