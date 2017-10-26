@@ -1,6 +1,0 @@
-{
-  "checkPolicies":true,
-  "productName":"App-Integrations-Trello",
-  "projectName":"trello-npm-package",
-  "devDep": false
-}

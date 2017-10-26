@@ -7,10 +7,6 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "whitesource": "node node_modules/whitesource/bin/whitesource.js run"
   },
-  "jest": {
-    "webpack-stream": "^3.2.0",
-    "whitesource": "^1.0.9"
-  },
   "author": "Symphony",
   "devDependencies": {
     "alt": "^0.18.5",
@@ -31,7 +27,8 @@
     "url-loader": "^0.5.7",
     "webpack": "^1.13.1",
     "webpack-dev-server": "^1.14.1",
-    "webpack-stream": "^3.2.0"
+    "webpack-stream": "^3.2.0",
+    "whitesource": "^1.0.9"
   },
   "dependencies": {
     "alt": "^0.18.6",
