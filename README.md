@@ -5,6 +5,7 @@
 [![codecov](https://codecov.io/gh/symphonyoss/App-Integrations-Trello/branch/dev/graph/badge.svg)](https://codecov.io/gh/symphonyoss/App-Integrations-Trello)
 
 
+# THIS PROJECT HAS BEEN DEPRECATED
 # Trello WebHook Integration
 The Trello WebHook Integration will allow you to receive notifications in Symphony whenever specific events, defined by you, occur in a Trello board of your choice.
 
